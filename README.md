@@ -16,8 +16,8 @@ a. Launch the Splash image:
 
 > docker pull scrapinghub/splash
 
-b. Run scrapinghub/splash in Docker (port 8050)
-Test the [service](http://localhost:8050/) on 8050.
+b. Run scrapinghub/splash in Docker (port 8050).
+Test the service on [8050](http://localhost:8050/).
 
 c. Install scrapy:
 
@@ -47,12 +47,17 @@ DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 ```
 
-Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pcw').
+Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pcw' and  set the top level URL):
+```
+class pcwspider(scrapy.Spider):
+  name = 'pcw'
+  url = 'https://www.peoplescollection.wales/discover/query/Women%20for%20life%20on%20earth/'
+  ...
+```
 
 Notes :
 
 - basic HTML elements are searched for (div, img, p, alt, src)
-- top level URL is set in the spider
 - no automatic pagination feature: range of pages (from the results list) must be set in the spider
 - no extraction of metadata (publication date...)
 
