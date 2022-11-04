@@ -10,3 +10,53 @@ and [Women Archives Wales](https://www.peoplescollection.wales/user/3062/author/
 
 [How-to](https://blog.finxter.com/a-complete-guide-to-set-up-splash-and-scrape-images-from-a-dynamic-website/)
 with [Scrapy](https://scrapy.org/) + [Splash](https://splash.readthedocs.io/en/stable/)
+
+
+a. Launch the Splash image:
+
+> docker pull scrapinghub/splash
+
+b. Run scrapinghub/splash in Docker (port 8050)
+
+c. Install scrapy:
+
+> pip install scrapy-splash
+
+d. Create a scrapy project:
+
+> mkdir myproject; cd myproject
+
+> scrapy startproject myproject
+
+d. Set up splash within scrapy:
+
+Edit settings.py and add these vars (port = 8050) :
+
+>SPLASH_URL = 'http://localhost:8050/'
+
+>DOWNLOADER_MIDDLEWARES = {'scrapy_splash.SplashCookiesMiddleware': 7,
+ >                       'scrapy_splash.SplashMiddleware': 725,
+ >                       'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810}
+
+>SPIDER_MIDDLEWARES = {'scrapy_splash.SplashDeduplicateArgsMiddleware': 100}
+
+>DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+
+>HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pcw').
+
+Notes :
+
+- basic HTML elements are searched for (div, img, p, alt, src)
+- top level URL is set in the spider
+- no automatic pagination feature: range of pages (from the result list) must be set in the spider
+- no extraction of metadata (publication date...)
+
+e. Run the 'pcw' spider:
+
+> mkdir images
+
+> scrapy crawl pcw
+
+Images should be stored in the images folder, named after their 'alt' attribute value (or the 'p' element value is alt is empty).
