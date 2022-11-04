@@ -32,17 +32,19 @@ d. Set up splash within scrapy:
 
 Edit settings.py and add these vars (port = 8050) :
 
-```SPLASH_URL = 'http://localhost:8050/'
+```
+SPLASH_URL = 'http://localhost:8050/'
 
->DOWNLOADER_MIDDLEWARES = {'scrapy_splash.SplashCookiesMiddleware': 7,
- >                       'scrapy_splash.SplashMiddleware': 725,
- >                       'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810}
+DOWNLOADER_MIDDLEWARES = {'scrapy_splash.SplashCookiesMiddleware': 7,
+                        'scrapy_splash.SplashMiddleware': 725,
+                        'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810}
 
->SPIDER_MIDDLEWARES = {'scrapy_splash.SplashDeduplicateArgsMiddleware': 100}
+SPIDER_MIDDLEWARES = {'scrapy_splash.SplashDeduplicateArgsMiddleware': 100}
 
->DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 
->HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+```
 
 Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pcw').
 
