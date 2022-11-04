@@ -23,9 +23,9 @@ c. Install scrapy:
 
 > pip install scrapy-splash
 
-d. Create a scrapy project:
+d. Create a scrapy project (e.g. PCW):
 
-> mkdir myproject; cd myproject
+> mkdir PCW; cd PCW
 
 > scrapy startproject myproject
 
