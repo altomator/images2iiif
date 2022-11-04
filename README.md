@@ -52,13 +52,13 @@ Notes :
 
 - basic HTML elements are searched for (div, img, p, alt, src)
 - top level URL is set in the spider
-- no automatic pagination feature: range of pages (from the result list) must be set in the spider
+- no automatic pagination feature: range of pages (from the results list) must be set in the spider
 - no extraction of metadata (publication date...)
 
 e. Run the 'pcw' spider:
 
 > mkdir images
-
+> 
 > scrapy crawl pcw
 
 Images should be stored in the images folder, named after their 'alt' attribute value (or the 'p' element value is alt is empty).
