@@ -17,6 +17,7 @@ a. Launch the Splash image:
 > docker pull scrapinghub/splash
 
 b. Run scrapinghub/splash in Docker (port 8050)
+Test the [service](http://localhost:8050/) on 8050.
 
 c. Install scrapy:
 
