@@ -32,7 +32,7 @@ d. Set up splash within scrapy:
 
 Edit settings.py and add these vars (port = 8050) :
 
->SPLASH_URL = 'http://localhost:8050/'
+```SPLASH_URL = 'http://localhost:8050/'
 
 >DOWNLOADER_MIDDLEWARES = {'scrapy_splash.SplashCookiesMiddleware': 7,
  >                       'scrapy_splash.SplashMiddleware': 725,
