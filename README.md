@@ -27,11 +27,11 @@ d. Create a scrapy project (e.g. PCW):
 
 > mkdir PCW; cd PCW
 
-> scrapy startproject myproject
+> scrapy startproject PCW
 
 d. Set up splash within scrapy:
 
-Edit settings.py and add these vars (port = 8050) :
+Edit settings.py and add these parameters (port = 8050) :
 
 ```
 SPLASH_URL = 'http://localhost:8050/'
@@ -47,7 +47,7 @@ DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 ```
 
-Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pcw' and  set the top level URL):
+Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pagescrap' and set the top level URL to be scraped):
 ```
 class pcwspider(scrapy.Spider):
   name = 'pagescrap'
@@ -56,11 +56,11 @@ class pcwspider(scrapy.Spider):
 ```
 
 Two spiders are involved:
-1.  Scraping the pages of the results list for document URLs
-2.  Scraping each document page for metadata
+1.  Scraping the pages of the results list for document URLs.
+2.  Scraping each document page for metadata.
 
 Notes :
-- basic HTML elements are searched for (div, img, p, alt, src)
+- HTML elements are searched (div, img, p, alt, src...)
 - no automatic pagination feature: range of pages (from the results list) must be set in the first spider
 - metadata are generated as CSV files; textual descriptions as TXT files
 
