@@ -50,21 +50,23 @@ HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 Copy the Python spider into myproject/spiders (give a name to the spider, e.g. 'pcw' and  set the top level URL):
 ```
 class pcwspider(scrapy.Spider):
-  name = 'pcw'
+  name = 'pagescrap'
   url = 'https://www.peoplescollection.wales/discover/query/Women%20for%20life%20on%20earth/'
   ...
 ```
 
+Two spiders are involved:
+1.  Scraping the pages of the results list for document URLs
+2.  Scraping each document page for metadata
+
 Notes :
-
 - basic HTML elements are searched for (div, img, p, alt, src)
-- no automatic pagination feature: range of pages (from the results list) must be set in the spider
-- no extraction of metadata (publication date...)
+- no automatic pagination feature: range of pages (from the results list) must be set in the first spider
+- metadata are generated as CSV files; textual descriptions as TXT files
 
-e. Run the 'pcw' spider:
+e. Run the spiders:
 
-> mkdir images
+> scrapy crawl pagescrap
 > 
-> scrapy crawl pcw
+> scrapy crawl itemscrap
 
-Images should be stored in the images folder, named after their 'alt' attribute value (or the 'p' element value is alt is empty).
